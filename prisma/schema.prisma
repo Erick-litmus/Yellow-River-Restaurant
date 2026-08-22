@@ -1,0 +1,27 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model MenuItem {
+  id          String   @id @default(uuid())
+  name        String
+  chineseName String?
+  description String
+  price       Float
+  category    String
+  imageUrl    String
+  isAvailable Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model AdminUser {
+  id       String @id @default(uuid())
+  username String @unique
+  password String
+}

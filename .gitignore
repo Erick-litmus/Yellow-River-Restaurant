@@ -28,3 +28,4 @@ yarn-error.log*
 # database
 /prisma/*.db
 /prisma/*.db-journal
+.env*

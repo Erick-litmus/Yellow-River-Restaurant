@@ -249,7 +249,7 @@ export default function AdminPage() {
                     className="btn-secondary" 
                     style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0.65rem 1rem', fontSize: '0.9rem', width: '100%', textAlign: 'center' }}
                   >
-                    {uploading ? 'Uploading...' : 'Upload Image'}
+                    {uploading ? 'Uploading...' : '📷 Upload / Take Photo from Phone'}
                   </label>
                 </div>
               </div>
@@ -344,7 +344,7 @@ export default function AdminPage() {
                   className="btn-secondary" 
                   style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0.65rem 1rem', fontSize: '0.9rem', width: '100%', textAlign: 'center' }}
                 >
-                  {uploading ? 'Uploading...' : 'Change Image'}
+                  {uploading ? 'Uploading...' : '📷 Change / Upload Photo from Phone'}
                 </label>
               </div>
             </div>

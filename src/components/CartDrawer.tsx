@@ -26,7 +26,7 @@ export default function CartDrawer() {
     message += `\n*Total Amount:* KSh ${totalPrice.toLocaleString()}\n\nPlease confirm availability and estimated delivery/pickup time. Thank you!`;
 
     const encoded = encodeURIComponent(message);
-    window.open(`https://wa.me/?text=${encoded}`, '_blank');
+    window.open(`https://wa.me/254706546644?text=${encoded}`, '_blank');
   };
 
   return (

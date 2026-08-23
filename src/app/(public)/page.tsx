@@ -91,8 +91,12 @@ export default async function HomePage() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
               <Phone className="info-icon" size={28} />
               <div>
-                <h4 style={{ fontSize: '1.1rem', fontWeight: 700 }}>Dine-In & Takeaway</h4>
-                <p className="info-text">Walk-ins and group reservations welcome</p>
+                <h4 style={{ fontSize: '1.1rem', fontWeight: 700 }}>WhatsApp & Phone Ordering</h4>
+                <p className="info-text">
+                  <a href="https://wa.me/254706546644" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent-gold)', fontWeight: 600 }}>
+                    0706546644 (+254 706 546 644)
+                  </a>
+                </p>
               </div>
             </div>
           </div>

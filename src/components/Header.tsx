@@ -2,10 +2,12 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { UtensilsCrossed, Menu, X } from 'lucide-react';
+import { UtensilsCrossed, Menu, X, ShoppingBag } from 'lucide-react';
+import { useCart } from '@/context/CartContext';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const { totalCount, setIsCartOpen } = useCart();
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
@@ -22,16 +24,43 @@ export default function Header() {
         <Link href="#about" className="nav-link">About Us</Link>
         <Link href="#menu" className="nav-link">Our Menu</Link>
         <Link href="#location" className="nav-link">Find Us</Link>
+
+        {/* Cart Icon Button */}
+        <button
+          className="header-cart-btn"
+          onClick={() => setIsCartOpen(true)}
+          aria-label="View Cart"
+        >
+          <ShoppingBag size={20} />
+          <span>Cart</span>
+          {totalCount > 0 && <span className="cart-badge-pill">{totalCount}</span>}
+        </button>
+
         <a href="#menu" className="btn-primary">
           <UtensilsCrossed size={18} />
           View Menu
         </a>
       </nav>
 
-      {/* Hamburger Toggle Button for Mobile */}
-      <button className="mobile-menu-toggle" onClick={toggleMenu} aria-label="Toggle Menu">
-        {isOpen ? <X size={24} /> : <Menu size={24} />}
-      </button>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+        {/* Mobile Cart Button */}
+        <button
+          className="header-cart-btn mobile-only-inline"
+          onClick={() => {
+            setIsCartOpen(true);
+            closeMenu();
+          }}
+          aria-label="View Cart"
+        >
+          <ShoppingBag size={20} />
+          {totalCount > 0 && <span className="cart-badge-pill">{totalCount}</span>}
+        </button>
+
+        {/* Hamburger Toggle Button for Mobile */}
+        <button className="mobile-menu-toggle" onClick={toggleMenu} aria-label="Toggle Menu">
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </div>
 
       {/* Mobile Navigation Drawer/Dropdown */}
       <div className={`mobile-nav ${isOpen ? 'open' : ''}`}>

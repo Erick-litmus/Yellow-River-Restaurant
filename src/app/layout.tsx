@@ -77,7 +77,7 @@ const jsonLd = {
   image: 'https://yellow-river-restaurant.vercel.app/images/restaurant_hero.png',
   '@id': 'https://yellow-river-restaurant.vercel.app/#restaurant',
   url: 'https://yellow-river-restaurant.vercel.app',
-  telephone: '+254700000000',
+  telephone: '+254706546644',
   priceRange: 'KSh 600 - KSh 1500',
   address: {
     '@type': 'PostalAddress',

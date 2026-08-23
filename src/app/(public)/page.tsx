@@ -1,5 +1,6 @@
 import { prisma } from '@/lib/prisma';
 import MenuSection from '@/components/MenuSection';
+import ReviewsSection from '@/components/ReviewsSection';
 import { MapPin, Clock, Star, Phone, Utensils } from 'lucide-react';
 
 export const revalidate = 0; // Dynamic data
@@ -64,6 +65,9 @@ export default async function HomePage() {
       {/* Menu Section */}
       <MenuSection initialItems={JSON.parse(JSON.stringify(items))} />
 
+      {/* Reviews Section */}
+      <ReviewsSection />
+
       {/* Location & Hours Section */}
       <section id="location" className="section">
         <div className="section-title-wrap">
@@ -84,7 +88,7 @@ export default async function HomePage() {
               <Clock className="info-icon" size={28} />
               <div>
                 <h4 style={{ fontSize: '1.1rem', fontWeight: 700 }}>Opening Hours</h4>
-                <p className="info-text">Open Daily from 11:00 AM onwards</p>
+                <p className="info-text">Mon–Sat: 11:00 AM – 12:30 AM | Sun: 11:30 AM – 12:30 AM</p>
               </div>
             </div>
 
@@ -101,20 +105,17 @@ export default async function HomePage() {
             </div>
           </div>
 
-          <div className="info-card" style={{ padding: 0, overflow: 'hidden', minHeight: '280px', background: 'var(--bg-card-hover)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <div style={{ textAlign: 'center', padding: '2rem' }}>
-              <MapPin size={48} color="var(--primary-red)" style={{ marginBottom: '1rem' }} />
-              <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>Kindaruma Rd, Nairobi</h3>
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '1.5rem' }}>Near Panda Mart & Ngong Road Junction</p>
-              <a
-                href="https://maps.google.com/?q=Kindaruma+Rd+Nairobi"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary"
-              >
-                Open in Google Maps
-              </a>
-            </div>
+          <div className="info-card" style={{ padding: 0, overflow: 'hidden', minHeight: '300px', background: 'var(--bg-card-hover)', position: 'relative' }}>
+            <iframe
+              title="Yellow River Restaurant Location Map"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.790937666497!2d36.78427777496582!3d-1.2971271986905584!2m3!1f0!0!f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10903332467d%3A0xb5b7964b38d380e2!2sKindaruma%20Rd%2C%20Nairobi!5e0!3m2!1sen!2ske!4v1700000000000!5m2!1sen!2ske"
+              width="100%"
+              height="100%"
+              style={{ border: 0, minHeight: '300px', width: '100%' }}
+              allowFullScreen={false}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
         </div>
       </section>

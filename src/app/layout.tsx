@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     telephone: true,
   },
   alternates: {
-    canonical: '/',
+    canonical: 'https://yellow-river-restaurant.vercel.app/',
   },
   openGraph: {
     title: 'Yellow River Restaurant | Authentic Chinese Cuisine Nairobi',
@@ -112,6 +112,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="canonical" href="https://yellow-river-restaurant.vercel.app/" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

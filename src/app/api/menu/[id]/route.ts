@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { revalidatePath } from 'next/cache';
 
 export async function PUT(
   request: Request,
@@ -23,6 +24,8 @@ export async function PUT(
       },
     });
 
+    revalidatePath('/');
+
     return NextResponse.json(updatedItem);
   } catch (error) {
     console.error('Failed to update menu item:', error);
@@ -39,6 +42,9 @@ export async function DELETE(
     await prisma.menuItem.delete({
       where: { id },
     });
+
+    revalidatePath('/');
+
     return NextResponse.json({ message: 'Item deleted successfully' });
   } catch (error) {
     console.error('Failed to delete menu item:', error);

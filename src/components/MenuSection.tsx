@@ -86,7 +86,13 @@ export default function MenuSection({ initialItems }: { initialItems: MenuItem[]
                 title={`Click to add ${item.name} to cart`}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={item.imageUrl} alt={item.name} className="menu-card-image" />
+                <img
+                  src={item.imageUrl}
+                  alt={item.name}
+                  className="menu-card-image"
+                  loading="lazy"
+                  decoding="async"
+                />
                 
                 {/* Badges overlay */}
                 {badges.length > 0 && (

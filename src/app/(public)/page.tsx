@@ -3,7 +3,7 @@ import MenuSection from '@/components/MenuSection';
 import ReviewsSection from '@/components/ReviewsSection';
 import { MapPin, Clock, Star, Phone, Utensils } from 'lucide-react';
 
-export const revalidate = 0; // Dynamic data
+export const revalidate = 60; // Incremental Static Regeneration (ISR) for instant Edge CDN responses
 
 export default async function HomePage() {
   const items = await prisma.menuItem.findMany({

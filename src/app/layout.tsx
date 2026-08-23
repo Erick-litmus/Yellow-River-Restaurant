@@ -113,6 +113,11 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="canonical" href="https://yellow-river-restaurant.vercel.app/" />
+        <link rel="dns-prefetch" href="https://wa.me" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preload" as="image" href="/images/restaurant_hero.png" />
+        <meta name="theme-color" content="#0b0c10" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

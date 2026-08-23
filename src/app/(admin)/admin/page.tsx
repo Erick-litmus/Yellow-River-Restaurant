@@ -21,26 +21,77 @@ export default function AdminPage() {
   const [editingItem, setEditingItem] = useState<MenuItem | null>(null);
   const [uploading, setUploading] = useState<boolean>(false);
 
+  const compressImage = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const MAX_WIDTH = 1000;
+          const MAX_HEIGHT = 1000;
+          let width = img.width;
+          let height = img.height;
+
+          if (width > height) {
+            if (width > MAX_WIDTH) {
+              height = Math.round((height * MAX_WIDTH) / width);
+              width = MAX_WIDTH;
+            }
+          } else {
+            if (height > MAX_HEIGHT) {
+              width = Math.round((width * MAX_HEIGHT) / height);
+              height = MAX_HEIGHT;
+            }
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+
+          const ctx = canvas.getContext('2d');
+          if (ctx) {
+            ctx.drawImage(img, 0, 0, width, height);
+            const dataUrl = canvas.toDataURL('image/jpeg', 0.82);
+            resolve(dataUrl);
+          } else {
+            reject(new Error('Canvas context failed'));
+          }
+        };
+        img.onerror = (err) => reject(err);
+        img.src = event.target?.result as string;
+      };
+      reader.onerror = (err) => reject(err);
+      reader.readAsDataURL(file);
+    });
+  };
+
   const uploadFile = async (file: File): Promise<string | null> => {
     setUploading(true);
     try {
+      const compressedDataUrl = await compressImage(file);
+      
+      const blob = await (await fetch(compressedDataUrl)).blob();
       const data = new FormData();
-      data.append('file', file);
+      data.append('file', blob, file.name || 'dish.jpg');
+
       const res = await fetch('/api/upload', {
         method: 'POST',
         body: data,
       });
+
       if (res.ok) {
         const json = await res.json();
         return json.imageUrl;
-      } else {
-        alert('Failed to upload image.');
-        return null;
       }
+      return compressedDataUrl;
     } catch (err) {
       console.error(err);
-      alert('Error uploading image.');
-      return null;
+      try {
+        return await compressImage(file);
+      } catch {
+        alert('Error processing image from phone.');
+        return null;
+      }
     } finally {
       setUploading(false);
     }
